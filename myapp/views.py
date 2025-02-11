@@ -66,23 +66,3 @@ def setp(request):
     print(data)
     
     return render(request,"result.html")
-
-
-
-
-
-
-
-# class result(TemplateView):
-#     def get(self ,request):
-#         model = joblib.load('myapp\model_1.pkl')
-
-#         features_name = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity',
-#                         'Fruits', 'Veggies','GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke',
-#                         'HighBP']
-
-#         input_data = pd.DataFrame([[4, 1, 0,1,26, 0, 0, 1, 0, 1, 3,5, 30, 0, 0, 1]], columns=features_name)
-#         prediction = model.predict(input_data)
-
-#         print("Prediction:\n", int(prediction[0]))
-#         return render(request,"result.html",{"result":int(prediction[0])})
