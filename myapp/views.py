@@ -1,8 +1,9 @@
 from django.shortcuts import render,HttpResponse
+from django.http import JsonResponse
 from django.views.generic import TemplateView
 import joblib
 import pandas as pd
-
+import json
 # Create your views here.
 
 def home(request):
@@ -41,28 +42,60 @@ def home(request):
                   {"value":2,"title":"أنثى"},
                   ]},
               ]
-
     return render(request,"index.html",{'Yn': my_list,'mqaly': my_list2,'select': my_list3})
 
-def result(request):
-    value = request.COOKIES.get('data')
-    print(value)
-    model = joblib.load('myapp\model_1.pkl')
-
-    features_name = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity',
-                    'Fruits', 'Veggies','GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke',
-                    'HighBP']
-
-    input_data = pd.DataFrame([[4, 1, 0,1,26, 0, 0, 1, 0, 1, 3,5, 30, 0, 0, 1]], columns=features_name)
-    prediction = model.predict(input_data)
-
-    return render(request,"result.html",{"result":int(prediction[0])})
-
 def setp(request):
-    # request.session.setdefault('how_many_visits', 0)
-    # request.session['how_many_visits'] += 1
-    # print(request.session['how_many_visits'])
-    data = request.GET.getlist('features_name',default=None)
-    print(data)
+    if request.method == "POST":
+        # قراءة البيانات المرسلة عبر POST
+        features_name = request.POST.get('features_name', None)
+        values = request.POST.get('values', None)
+        # x = '{"aa":["HighChol","CholCheck","Smoker","HeartDiseahysHlth","Age","MentHlth","bmi","GenHlth","Sex"]}'
+        # x1 = features_name
+        # y1 = json.loads(x1)
+        # print(y1['aa'])
+        # x2 = values
+        # y2 = json.loads(x2)
+        # print(y2['aa'])
+        response = HttpResponse('blah')
+        response.set_cookie('features_name', features_name)
+        response.set_cookie('values', values)
+        return response
+
+        # return JsonResponse({"message": "Data received successfully"})        
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=405)
     
-    return render(request,"result.html")
+
+# def setp(request):
+#     print(request.POST['features_name'])
+#     response = HttpResponse('blah')
+#     response.set_cookie('cookie_name', ['aaaaa',"lalla"])
+#     return response
+
+class result(TemplateView):
+    def get(self,request):
+        model = joblib.load('myapp\model_1.pkl')
+        features_name = request.COOKIES.get('features_name')
+        values = request.COOKIES.get('values')
+        col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity','Fruits', 'Veggies','GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke','HighBP']
+
+        x1 = features_name
+        y1 = json.loads(x1)
+        print(y1)
+
+        x2 = values
+        y2 = json.loads(x2)
+        # print(y2['aa'][0])
+
+        input_data = pd.DataFrame([y2['aa']], columns=y1['aa'])
+        # input_data = pd.DataFrame([y2['aa']], columns=y2['aa'])
+        prediction = model.predict(input_data)
+
+        return render(request,"result.html",{"result":int(prediction[0])})
+    def post(self,request):
+        request.session.setdefault('keys', 0)
+        # request.session.setdefault('values', 0)
+        # request.session['keys'] = request.POST["features_name"]
+        # request.session['values'] = request.POST["values"]
+        return HttpResponse("boodone")
+

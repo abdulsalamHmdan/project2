@@ -310,7 +310,7 @@
                 </g>
             </g>
         </svg>
-        <img src="/imgs/scan.svg" width="300">
+        <!-- <img src="/imgs/scan.svg" width="300"> -->
     </div>
     <div class="container">
         <div class="info"></div>
@@ -357,6 +357,11 @@
                     </select>
                 </div>
                 {% endfor %}
+                <form method="post" action="/setp">
+                    {% csrf_token %}
+                    <input class="data" type="hidden" name="data">
+                    <input type="submit" value="goooo" type="text">
+                </form>
 
                 <button class="send">ارسال البيانات</button>
 
@@ -386,4 +391,66 @@
             </div>
         </div>
     </div>
+    <script>
+        col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity','Fruits', 'Veggies','GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke','HighBP']
+        document.querySelector(".send").addEventListener('click', (e) => {
+            let yn = [...document.querySelectorAll(".box")].map(yn => {
+                return {
+                    id: yn.getAttribute("id"),
+                    value: yn.getAttribute("value"),
+                    col:col.findIndex(x=> x == yn.getAttribute("id"))
+                }
+            })
+            console.log(yn)
+
+            let val = [...document.querySelectorAll(".val")].map(val => {
+                return {
+                    id: val.getAttribute("id"),
+                    value: val.querySelector("input").value,
+                    col:col.findIndex(x=>x == val.getAttribute("id"))
+                }
+            })
+            let bmi = val.splice(2, 2);
+            bmi[1].value /= 100
+            bmi = bmi[0].value / (bmi[1].value * bmi[1].value)
+            val.push({ id: "BMI", value: bmi,col:4 })
+            console.log(val)
+
+
+            let select = [...document.querySelectorAll(".select")].map(val => {
+                return {
+                    id: val.getAttribute("id"),
+                    value: val.querySelector("select").value,
+                    col:col.findIndex(x=>x == val.getAttribute("id"))
+                }
+            })
+            console.log(select)
+
+            let data = yn.concat(val, select)
+            data = data.sort(function(a, b){return a['col'] - b['col']});
+            console.log(data)
+            data = {
+                features_name: JSON.stringify({ aa: data.map(x => x.id) }),
+                values: JSON.stringify({ aa: data.map(x => x.value) }),
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+
+            }
+            // document.querySelector(".data").value = JSON.stringify(data);
+            $.ajax({
+                url: "/setp",
+                type: "POST",
+                data: data,
+                success: function (response) {
+                    console.log(response)
+
+                },
+                error: function () {
+                    // do action
+                }
+            });
+
+
+
+        })
+    </script>
 </body>
