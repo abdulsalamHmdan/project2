@@ -1,2 +1,0 @@
-['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 'GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke', 'HighBP']
-['HighChol', 'CholCheck', 'Smoker', 'HeartDiseaseorAttack', 'Fruits', 'PhysActivity', 'Veggies', 'DiffWalk', 'Stroke', 'HighBP', 'PhysHlth', 'Age', 'MentHlth', 'BMI', 'GenHlth', 'Sex']
