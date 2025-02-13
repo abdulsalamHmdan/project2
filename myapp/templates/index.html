@@ -310,7 +310,7 @@
                 </g>
             </g>
         </svg>
-        <!-- <img src="/imgs/scan.svg" width="300"> -->
+        <img src="imgs/scan.svg" width="300">
     </div>
     <div class="container">
         <div class="info"></div>
@@ -430,12 +430,11 @@
             data = data.sort(function(a, b){return a['col'] - b['col']});
             console.log(data)
             data = {
-                features_name: JSON.stringify({ Array: data.map(x => x.id) }),
-                values: JSON.stringify({ Array: data.map(x => x.value) }),
+                features_name: JSON.stringify({ array: data.map(x => x.id) }),
+                values: JSON.stringify({ array: data.map(x => x.value) }),
                 csrfmiddlewaretoken: '{{ csrf_token }}'
 
             }
-            // document.querySelector(".data").value = JSON.stringify(data);
             $.ajax({
                 url: "/setp",
                 type: "POST",
