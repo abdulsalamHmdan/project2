@@ -22,7 +22,7 @@ def home(request):
     
     my_list2 = [
               {"id":"PhysHlth","title":"كم مرة تعرضت لاصابة في جسمك خلال الثلاثين يوم الماضية","placeholder":"1..","max":30,"min":0},
-              {"id":"Age","title":"العمر","placeholder":" ","max":110,"min":18},
+              {"id":"Age","title":"العمر","placeholder":" ","max":13,"min":1},
               {"id":"Weight","title":"الوزن","placeholder":" ","max":200,"min":0},
               {"id":"Height","title":"الطول","placeholder":" ","max":250,"min":0},
               {"id":"MentHlth","title":"كم مر بك يوم سيء لصحتك النفسية خلال الثلاثين يوم الماضية","placeholder":"20..","max":30,"min":0},
