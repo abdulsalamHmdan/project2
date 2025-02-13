@@ -430,8 +430,8 @@
             data = data.sort(function(a, b){return a['col'] - b['col']});
             console.log(data)
             data = {
-                features_name: JSON.stringify({ aa: data.map(x => x.id) }),
-                values: JSON.stringify({ aa: data.map(x => x.value) }),
+                features_name: JSON.stringify({ Array: data.map(x => x.id) }),
+                values: JSON.stringify({ Array: data.map(x => x.value) }),
                 csrfmiddlewaretoken: '{{ csrf_token }}'
 
             }
@@ -441,7 +441,7 @@
                 type: "POST",
                 data: data,
                 success: function (response) {
-                    console.log(response)
+                    
 
                 },
                 error: function () {

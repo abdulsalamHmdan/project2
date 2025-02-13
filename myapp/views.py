@@ -49,53 +49,27 @@ def setp(request):
         # قراءة البيانات المرسلة عبر POST
         features_name = request.POST.get('features_name', None)
         values = request.POST.get('values', None)
-        # x = '{"aa":["HighChol","CholCheck","Smoker","HeartDiseahysHlth","Age","MentHlth","bmi","GenHlth","Sex"]}'
-        # x1 = features_name
-        # y1 = json.loads(x1)
-        # print(y1['aa'])
-        # x2 = values
-        # y2 = json.loads(x2)
-        # print(y2['aa'])
-        response = HttpResponse('blah')
+        response = HttpResponse('success')
         response.set_cookie('features_name', features_name)
         response.set_cookie('values', values)
         return response
-
-        # return JsonResponse({"message": "Data received successfully"})        
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
     
-
-# def setp(request):
-#     print(request.POST['features_name'])
-#     response = HttpResponse('blah')
-#     response.set_cookie('cookie_name', ['aaaaa',"lalla"])
-#     return response
-
 class result(TemplateView):
     def get(self,request):
         model = joblib.load('myapp\model_1.pkl')
         features_name = request.COOKIES.get('features_name')
         values = request.COOKIES.get('values')
         col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity','Fruits', 'Veggies','GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke','HighBP']
-
         x1 = features_name
-        y1 = json.loads(x1)
-        print(y1)
-
         x2 = values
+        y1 = json.loads(x1)
         y2 = json.loads(x2)
-        # print(y2['aa'][0])
-
-        input_data = pd.DataFrame([y2['aa']], columns=y1['aa'])
-        # input_data = pd.DataFrame([y2['aa']], columns=y2['aa'])
+        input_data = pd.DataFrame([y2['array']], columns=y1['array'])
         prediction = model.predict(input_data)
-
         return render(request,"result.html",{"result":int(prediction[0])})
     def post(self,request):
         request.session.setdefault('keys', 0)
-        # request.session.setdefault('values', 0)
-        # request.session['keys'] = request.POST["features_name"]
-        # request.session['values'] = request.POST["values"]
         return HttpResponse("boodone")
 
