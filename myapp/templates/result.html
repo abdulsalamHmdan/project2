@@ -8,7 +8,18 @@
 </head>
 
 <body>
+    {% if result == 0%}
+    <h1>انت غير مصاب</h1>
     <h1>{{result}}</h1>
+    {% else %}
+    <h1>انت مصاب</h1>
+    <h1>{{result}}</h1>
+    {% endif %}
+    <a href="/">
+    <div class="back">
+        العودة
+    </div>
+</a>
 </body>
 
 </html>

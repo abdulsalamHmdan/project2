@@ -310,13 +310,15 @@
                 </g>
             </g>
         </svg>
-        <img src="imgs/scan.svg" width="300">
+        <!-- <img src="imgs/scan.svg" width="300"> -->
+        <img width="200" src="{% static 'imgs/scan1.svg' %}">
+
     </div>
     <div class="container">
         <div class="info"></div>
         <div class="main">
             <div class="form">
-                <p class="flex2">بش نقلّك على نسبة احتمال إصابتك بالكوفيد، أعطيني المعلومات التّالية</p>
+                <p class="flex2">يرجى التأكد من المعلومات المدخلة</p>
 
                 {% for qu in mqaly %}
                 <div id={{qu.id}} class="q flex2 val">
@@ -441,11 +443,9 @@
                 data: data,
                 success: function (response) {
                     window.location.href = "result";
-
-
                 },
                 error: function () {
-                    // do action
+                    alert("يوجد مشكلة يرجى المحولة لاحقا")
                 }
             });
 
