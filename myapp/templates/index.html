@@ -392,13 +392,13 @@
         </div>
     </div>
     <script>
-        col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity','Fruits', 'Veggies','GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke','HighBP']
+        col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 'GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke', 'HighBP']
         document.querySelector(".send").addEventListener('click', (e) => {
             let yn = [...document.querySelectorAll(".box")].map(yn => {
                 return {
                     id: yn.getAttribute("id"),
                     value: yn.getAttribute("value"),
-                    col:col.findIndex(x=> x == yn.getAttribute("id"))
+                    col: col.findIndex(x => x == yn.getAttribute("id"))
                 }
             })
             console.log(yn)
@@ -407,13 +407,13 @@
                 return {
                     id: val.getAttribute("id"),
                     value: val.querySelector("input").value,
-                    col:col.findIndex(x=>x == val.getAttribute("id"))
+                    col: col.findIndex(x => x == val.getAttribute("id"))
                 }
             })
             let bmi = val.splice(2, 2);
             bmi[1].value /= 100
             bmi = bmi[0].value / (bmi[1].value * bmi[1].value)
-            val.push({ id: "BMI", value: bmi,col:4 })
+            val.push({ id: "BMI", value: bmi, col: 4 })
             console.log(val)
 
 
@@ -421,13 +421,13 @@
                 return {
                     id: val.getAttribute("id"),
                     value: val.querySelector("select").value,
-                    col:col.findIndex(x=>x == val.getAttribute("id"))
+                    col: col.findIndex(x => x == val.getAttribute("id"))
                 }
             })
             console.log(select)
 
             let data = yn.concat(val, select)
-            data = data.sort(function(a, b){return a['col'] - b['col']});
+            data = data.sort(function (a, b) { return a['col'] - b['col'] });
             console.log(data)
             data = {
                 features_name: JSON.stringify({ array: data.map(x => x.id) }),
@@ -440,7 +440,8 @@
                 type: "POST",
                 data: data,
                 success: function (response) {
-                    
+                    window.location.href = "result";
+
 
                 },
                 error: function () {

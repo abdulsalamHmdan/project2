@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import render,HttpResponse,redirect
 from django.http import JsonResponse
 from django.views.generic import TemplateView
 import joblib
@@ -50,8 +50,8 @@ def setp(request):
         features_name = request.POST.get('features_name', None)
         values = request.POST.get('values', None)
         response = HttpResponse('success')
-        response.set_cookie('features_name', features_name)
-        response.set_cookie('values', values)
+        response.set_cookie('features_name', features_name,max_age=25)
+        response.set_cookie('values', values,max_age=25)
         return response
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
@@ -59,9 +59,10 @@ def setp(request):
 class result(TemplateView):
     def get(self,request):
         model = joblib.load('myapp\model_1.pkl')
-        features_name = request.COOKIES.get('features_name')
-        values = request.COOKIES.get('values')
-        col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity','Fruits', 'Veggies','GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke','HighBP']
+        features_name = request.COOKIES.get('features_name',None)
+        values = request.COOKIES.get('values',None)
+        if(features_name == None or values == None ):
+            return redirect('home')
         x1 = features_name
         x2 = values
         y1 = json.loads(x1)
@@ -70,6 +71,5 @@ class result(TemplateView):
         prediction = model.predict(input_data)
         return render(request,"result.html",{"result":int(prediction[0])})
     def post(self,request):
-        request.session.setdefault('keys', 0)
         return HttpResponse("boodone")
 
