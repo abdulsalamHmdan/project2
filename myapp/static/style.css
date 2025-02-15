@@ -117,3 +117,7 @@ body {
     margin-bottom: 15px;
     width: 100%;
 }
+
+input.error , select.error { 
+    border-color:red;
+}

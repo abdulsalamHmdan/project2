@@ -323,7 +323,7 @@
                 {% for qu in mqaly %}
                 <div id={{qu.id}} class="q flex2 val">
                     <p>{{qu.title}}</p>
-                    <input max={{qu.max}} min={{qu.min}} type="number">
+                    <input class="valid" max={{qu.max}} min={{qu.min}} type="number">
                 </div>
                 {% endfor %}
 
@@ -351,19 +351,14 @@
                 {% for qu in select %}
                 <div id={{qu.id}} class="select q flex2">
                     <p>{{qu.title}}</p>
-                    <select>
-                        <option value=0>تحديد</option>
+                    <select class="valid">
+                        <option value=-1>تحديد</option>
                         {% for choise in qu.list %}
                         <option value={{choise.value}}>{{choise.title}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 {% endfor %}
-                <form method="post" action="/setp">
-                    {% csrf_token %}
-                    <input class="data" type="hidden" name="data">
-                    <input type="submit" value="goooo" type="text">
-                </form>
 
                 <button class="send">ارسال البيانات</button>
 
@@ -403,7 +398,6 @@
                     col: col.findIndex(x => x == yn.getAttribute("id"))
                 }
             })
-            console.log(yn)
 
             let val = [...document.querySelectorAll(".val")].map(val => {
                 return {
@@ -416,7 +410,6 @@
             bmi[1].value /= 100
             bmi = bmi[0].value / (bmi[1].value * bmi[1].value)
             val.push({ id: "BMI", value: bmi, col: 4 })
-            console.log(val)
 
 
             let select = [...document.querySelectorAll(".select")].map(val => {
@@ -426,28 +419,39 @@
                     col: col.findIndex(x => x == val.getAttribute("id"))
                 }
             })
-            console.log(select)
 
             let data = yn.concat(val, select)
             data = data.sort(function (a, b) { return a['col'] - b['col'] });
-            console.log(data)
+            let flag = false;
+            document.querySelectorAll(".valid").forEach(q => {
+                q.classList.remove("error")
+                console.log(q.validity.valid)
+                if (["", NaN, "-1", Infinity].includes(q.value) || !q.validity.valid) {
+                    q.classList.add("error")
+                    flag = true
+                }
+            })
+            if (flag) {
+                alert("aaa")
+                return;
+            }
             data = {
                 features_name: JSON.stringify({ array: data.map(x => x.id) }),
                 values: JSON.stringify({ array: data.map(x => x.value) }),
                 csrfmiddlewaretoken: '{{ csrf_token }}'
 
             }
-            $.ajax({
-                url: "/setp",
-                type: "POST",
-                data: data,
-                success: function (response) {
-                    window.location.href = "result";
-                },
-                error: function () {
-                    alert("يوجد مشكلة يرجى المحولة لاحقا")
-                }
-            });
+            // $.ajax({
+            //     url: "/setp",
+            //     type: "POST",
+            //     data: data,
+            //     success: function (response) {
+            //         window.location.href = "result";
+            //     },
+            //     error: function () {
+            //         alert("يوجد مشكلة يرجى المحولة لاحقا")
+            //     }
+            // });
 
 
 
