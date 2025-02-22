@@ -1,2 +1,1 @@
 ML django project
-test
