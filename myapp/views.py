@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 import joblib
 import pandas as pd
 import json
+from mysite.settings import BASE_DIR
 # Create your views here.
 
 def home(request):
@@ -58,6 +59,7 @@ def setp(request):
     
 class result(TemplateView):
     def get(self,request):
+        print(BASE_DIR)
         model = joblib.load('myapp\model_1.pkl')
         features_name = request.COOKIES.get('features_name',None)
         values = request.COOKIES.get('values',None)
