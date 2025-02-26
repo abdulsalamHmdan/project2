@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
 }
+
 input:focus {
     outline: none;
     /* border: none; */
@@ -36,7 +37,7 @@ body {
     gap: 30px
 }
 
-.labels{
+.labels {
     max-width: 400px;
 }
 
@@ -86,12 +87,13 @@ body {
 
 }
 
-.active{
-    box-shadow:0px 0px 0px 2px #2119f6;
+.active {
+    box-shadow: 0px 0px 0px 2px #2119f6;
     transition: all 1s ease-in-out;
 }
-.notsure{
-    box-shadow:0px 0px 0px 2px #f69a19;
+
+.notsure {
+    box-shadow: 0px 0px 0px 2px #f69a19;
     transition: all 1s ease-in-out;
 }
 
@@ -103,18 +105,19 @@ body {
     margin-right: calc(0px - 100%);
     cursor: pointer;
     border-radius: 50%;
-    box-shadow:0px 0px 0px 3px #fff;
+    box-shadow: 0px 0px 0px 3px #fff;
 }
 
-.flex2 input{
+.flex2 input {
     border: 1px solid #e8e8e8;
     border-radius: 5px;
     height: 29px;
     margin-bottom: 15px;
     width: 100%;
-    
+
 }
-.flex2 select{
+
+.flex2 select {
     border: 1px solid #e8e8e8;
     border-radius: 5px;
     height: 29px;
@@ -122,21 +125,33 @@ body {
     width: 100%;
 }
 
-input.error , select.error { 
-    border-color:red;
+input.error,
+select.error {
+    border-color: red;
+}
+
+.send {
+    margin: 0 auto;
 }
 
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
     /* body {
       background-color: lightblue;
     } */
 
     .main {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-        gap: 30px
     }
-  }
+
+    .header {
+        width: 100vw;
+        /* display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 50px; */
+    }
+
+}
