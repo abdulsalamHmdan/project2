@@ -320,15 +320,13 @@
             <div class="form">
                 <p class="flex2">يرجى التأكد من المعلومات المدخلة</p>
 
-                {% for qu in mqaly %}
+                {% for qu in questions %}
+                {% if qu.type == 't2'%}
                 <div id={{qu.id}} class="q flex2 val">
                     <p>{{qu.title}}</p>
                     <input class="valid" max={{qu.max}} min={{qu.min}} type="number">
                 </div>
-                {% endfor %}
-
-                {% for qu in Yn %}
-
+                {% elif qu.type == 't1'%}
                 <div class="q flex1">
                     <div id={{qu.id}} class="yn box">
                         <!-- <img class="q-mark" src="imgs/download.png"> -->
@@ -345,10 +343,7 @@
                         <p>{{qu.title}}</p>
                     </div>
                 </div>
-
-                {% endfor %}
-
-                {% for qu in select %}
+                {% elif qu.type == 't3'%}
                 <div id={{qu.id}} class="select q flex2">
                     <p>{{qu.title}}</p>
                     <select class="valid">
@@ -358,11 +353,9 @@
                         {% endfor %}
                     </select>
                 </div>
+                {% endif %}
                 {% endfor %}
-
                 <button class="send">ارسال البيانات</button>
-
-
             </div>
             <div class="labels">
                 <div class="label">
@@ -405,9 +398,12 @@
                     col: col.findIndex(x => x == val.getAttribute("id"))
                 }
             })
-            let bmi = val.splice(2, 2);
+
+            let bmi = [val.splice(val.findIndex(x => x.id == "Weight"), 1)[0], val.splice(val.findIndex(x => x.id == "Height"), 1)[0]];
+            console.log("bmi:", bmi)
             bmi[1].value /= 100
             bmi = bmi[0].value / (bmi[1].value * bmi[1].value)
+            console.log(bmi)
             val.push({ id: "BMI", value: bmi, col: 4 })
 
 
@@ -446,16 +442,13 @@
                 type: "POST",
                 data: data,
                 success: function (response) {
-                    window.open('result', '_blank');
-                    // window.location.href = "result";
+                    window.open('result', '_self');
                 },
                 error: function () {
+                    console.log(err)
                     alert("يوجد مشكلة يرجى المحولة لاحقا")
                 }
             });
-
-
-
         })
     </script>
 </body>
