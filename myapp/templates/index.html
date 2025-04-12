@@ -381,6 +381,21 @@
         </div>
     </div>
     <script>
+        let ageIndex = [
+            [18, 24, 1],
+            [25, 29, 2],
+            [30, 34, 3],
+            [35, 39, 4],
+            [40, 44, 5],
+            [45, 49, 6],
+            [50, 54, 7],
+            [55, 59, 8],
+            [60, 64, 9],
+            [65, 69, 10],
+            [70, 74, 11],
+            [75, 79, 12],
+            [80, 120, 13],
+        ];
         col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 'GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke', 'HighBP']
         document.querySelector(".send").addEventListener('click', (e) => {
             let yn = [...document.querySelectorAll(".box")].map(yn => {
@@ -398,7 +413,8 @@
                     col: col.findIndex(x => x == val.getAttribute("id"))
                 }
             })
-
+            console.log(val)
+            // val[0].value = ""
             let bmi = [val.splice(val.findIndex(x => x.id == "Weight"), 1)[0], val.splice(val.findIndex(x => x.id == "Height"), 1)[0]];
             console.log("bmi:", bmi)
             bmi[1].value /= 100
