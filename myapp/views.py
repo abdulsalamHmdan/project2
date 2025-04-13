@@ -12,14 +12,6 @@ def home(request):
     my_list = [
         {
             "type": "t2",
-            "id": "Age",
-            "title": "العمر",
-            "placeholder": " ",
-            "max": 99,
-            "min": 15,
-        },
-        {
-            "type": "t2",
             "id": "Weight",
             "title": "الوزن",
             "placeholder": " ",
@@ -33,6 +25,14 @@ def home(request):
             "placeholder": " ",
             "max": 250,
             "min": 120,
+        },
+        {
+            "type": "t2",
+            "id": "Age",
+            "title": "العمر",
+            "placeholder": " ",
+            "max": 99,
+            "min": 15,
         },
         {
             "type": "t3",
@@ -125,7 +125,7 @@ def setp(request):
 
 class result(TemplateView):
     def get(self, request):
-        print(BASE_DIR)
+        # print(BASE_DIR)
         model = joblib.load("myapp/model_1.pkl")
         features_name = request.COOKIES.get("features_name", None)
         values = request.COOKIES.get("values", None)

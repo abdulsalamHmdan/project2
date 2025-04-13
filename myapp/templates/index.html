@@ -9,6 +9,7 @@
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- <script defer src="index.js"></script> -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'button.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="{% static 'index.js' %}"></script>
 
@@ -318,7 +319,7 @@
         <div class="info"></div>
         <div class="main">
             <div class="form">
-                <p class="flex2">يرجى التأكد من المعلومات المدخلة</p>
+                <p class="flex3">يرجى التأكد من المعلومات المدخلة</p>
 
                 {% for qu in questions %}
                 {% if qu.type == 't2'%}
@@ -355,7 +356,9 @@
                 </div>
                 {% endif %}
                 {% endfor %}
-                <button class="send">ارسال البيانات</button>
+                <div class="flex3 bt">
+                    <button class="send">ارسال البيانات</button>
+                </div>
             </div>
             <div class="labels">
                 <div class="label">
@@ -413,7 +416,7 @@
                     col: col.findIndex(x => x == val.getAttribute("id"))
                 }
             })
-            console.log(val)
+            // console.log(val)
             // val[0].value = ""
             let bmi = [val.splice(val.findIndex(x => x.id == "Weight"), 1)[0], val.splice(val.findIndex(x => x.id == "Height"), 1)[0]];
             console.log("bmi:", bmi)
@@ -446,6 +449,7 @@
                 alert("aaa")
                 return;
             }
+
             data = {
                 features_name: JSON.stringify({ array: data.map(x => x.id) }),
                 values: JSON.stringify({ array: data.map(x => x.value) }),
