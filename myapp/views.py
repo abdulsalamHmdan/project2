@@ -32,7 +32,7 @@ def home(request):
             "title": "العمر",
             "placeholder": " ",
             "max": 99,
-            "min": 15,
+            "min": 18,
         },
         {
             "type": "t3",

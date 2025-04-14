@@ -385,22 +385,37 @@
     </div>
     <script>
         let ageIndex = [
-            [18, 24, 1],
-            [25, 29, 2],
-            [30, 34, 3],
-            [35, 39, 4],
-            [40, 44, 5],
-            [45, 49, 6],
-            [50, 54, 7],
-            [55, 59, 8],
-            [60, 64, 9],
-            [65, 69, 10],
-            [70, 74, 11],
-            [75, 79, 12],
-            [80, 120, 13],
+            [18, 24, "1"],
+            [25, 29, "2"],
+            [30, 34, "3"],
+            [35, 39, "4"],
+            [40, 44, "5"],
+            [45, 49, "6"],
+            [50, 54, "7"],
+            [55, 59, "8"],
+            [60, 64, "9"],
+            [65, 69, "10"],
+            [70, 74, "11"],
+            [75, 79, "12"],
+            [80, 120, "13"],
         ];
         col = ['Age', 'Sex', 'HighChol', 'CholCheck', 'BMI', 'Smoker', 'HeartDiseaseorAttack', 'PhysActivity', 'Fruits', 'Veggies', 'GenHlth', 'MentHlth', 'PhysHlth', 'DiffWalk', 'Stroke', 'HighBP']
         document.querySelector(".send").addEventListener('click', (e) => {
+            let flag = false;
+            document.querySelectorAll(".valid").forEach(q => {
+                q.classList.remove("error")
+                // console.log(q.validity.valid)
+                if (["", NaN, "-1", Infinity].includes(q.value) || !q.validity.valid) {
+                    q.classList.add("error")
+                    flag = true
+                }
+            })
+            if (flag) {
+                alert("aaa")
+                return;
+            }
+
+
             let yn = [...document.querySelectorAll(".box")].map(yn => {
                 return {
                     id: yn.getAttribute("id"),
@@ -419,11 +434,19 @@
             // console.log(val)
             // val[0].value = ""
             let bmi = [val.splice(val.findIndex(x => x.id == "Weight"), 1)[0], val.splice(val.findIndex(x => x.id == "Height"), 1)[0]];
-            console.log("bmi:", bmi)
+            // console.log("bmi:", bmi)
             bmi[1].value /= 100
             bmi = bmi[0].value / (bmi[1].value * bmi[1].value)
-            console.log(bmi)
+            // console.log(bmi)
             val.push({ id: "BMI", value: bmi, col: 4 })
+
+            let age = val[val.findIndex(x => x.id == "Age")].value
+            age = ageIndex.find(x => {
+                return (x[0] <= age && x[1] >= age)
+            })[2]
+            console.log(age)
+            val[val.findIndex(x => x.id == "Age")].value = age
+
 
 
             let select = [...document.querySelectorAll(".select")].map(val => {
@@ -436,19 +459,7 @@
 
             let data = yn.concat(val, select)
             data = data.sort(function (a, b) { return a['col'] - b['col'] });
-            let flag = false;
-            document.querySelectorAll(".valid").forEach(q => {
-                q.classList.remove("error")
-                console.log(q.validity.valid)
-                if (["", NaN, "-1", Infinity].includes(q.value) || !q.validity.valid) {
-                    q.classList.add("error")
-                    flag = true
-                }
-            })
-            if (flag) {
-                alert("aaa")
-                return;
-            }
+            console.log(data)
 
             data = {
                 features_name: JSON.stringify({ array: data.map(x => x.id) }),
@@ -457,18 +468,18 @@
 
             }
 
-            $.ajax({
-                url: "/setp",
-                type: "POST",
-                data: data,
-                success: function (response) {
-                    window.open('result', '_self');
-                },
-                error: function () {
-                    console.log(err)
-                    alert("يوجد مشكلة يرجى المحاولة لاحقا")
-                }
-            });
+            // $.ajax({
+            //     url: "/setp",
+            //     type: "POST",
+            //     data: data,
+            //     success: function (response) {
+            //         window.open('result', '_self');
+            //     },
+            //     error: function () {
+            //         console.log(err)
+            //         alert("يوجد مشكلة يرجى المحاولة لاحقا")
+            //     }
+            // });
         })
     </script>
 </body>
