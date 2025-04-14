@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+</head>
+
+<body>
+    {% if result == 0%}
+    <h1>You do not have diabetes</h1>
+    {% else %}
+    <h1>You have diabetes</h1>
+    {% endif %}
+    <h1>{{result}}</h1>
+    <a href="/">
+        <div class="back">
+            back
+        </div>
+    </a>
+</body>
+
+</html>

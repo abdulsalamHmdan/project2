@@ -14,7 +14,7 @@
     <script defer src="{% static 'index.js' %}"></script>
     <style>
         body {
-            direction: rtl;
+            direction: ltr;
         }
     </style>
 
@@ -324,12 +324,12 @@
         <div class="info"></div>
         <div class="main">
             <div class="form">
-                <p class="flex3">يرجى التأكد من المعلومات المدخلة</p>
+                <p class="flex3">Please verify the entered information</p>
 
                 {% for qu in questions %}
                 {% if qu.type == 't2'%}
                 <div id={{qu.id}} class="q flex2 val">
-                    <p>{{qu.title}}</p>
+                    <p>{{qu.en}}</p>
                     <input class="valid" max={{qu.max}} min={{qu.min}} type="number">
                 </div>
                 {% elif qu.type == 't1'%}
@@ -346,12 +346,12 @@
                                 d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z">
                             </path>
                         </svg>
-                        <p>{{qu.title}}</p>
+                        <p>{{qu.en}}</p>
                     </div>
                 </div>
                 {% elif qu.type == 't3'%}
                 <div id={{qu.id}} class="select q flex2">
-                    <p>{{qu.title}}</p>
+                    <p>{{qu.en}}</p>
                     <select class="valid">
                         <option value=-1>تحديد</option>
                         {% for choise in qu.list %}
@@ -367,8 +367,8 @@
             </div>
             <div class="labels">
                 <div class="label">
-                    <h2 style="font-weight: bold;">هل تواجه مشكلة ؟</h2>
-                    <p> قم بوضع الفأرة على العلامة<i aria-label="icon: info-circle" class="anticon anticon-info-circle"
+                    <h2 style="font-weight: bold;">Are you experiencing a problem ?</h2>
+                    <p> Hover over the  <i aria-label="icon: info-circle" class="anticon anticon-info-circle"
                             style="font-size: 18px;"><svg viewBox="64 64 896 896" data-icon="info-circle" width="1em"
                                 height="1em" fill="currentColor" aria-hidden="true" focusable="false" class="">
                                 <path
@@ -377,7 +377,7 @@
                                 <path
                                     d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z">
                                 </path>
-                            </svg></i> حتى تحصل على التلميح </p>
+                            </svg></i> icon to get a hint </p>
                 </div>
                 <!-- <div class="label">
                     <h2 style="font-weight: bold;">تحتاج مساعدة؟</h2>
