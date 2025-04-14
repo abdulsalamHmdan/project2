@@ -3,7 +3,7 @@ from django.http import JsonResponse
 import joblib
 import pandas as pd
 import json
-
+en = 0
 # from django.views.generic import TemplateView
 # from mysite.settings import BASE_DIR
 
@@ -150,7 +150,7 @@ def home(request):
             ],
         },
     ]
-    if 1:
+    if en:
         return render(request, "index.html", {"questions": my_list})
     else:
         return render(request, "index_en.html", {"questions": my_list})
@@ -181,7 +181,7 @@ def result(request):
     y2 = json.loads(x2)
     input_data = pd.DataFrame([y2["array"]], columns=y1["array"])
     prediction = model.predict(input_data)
-    if 1:
+    if en:
         return render(request, "result.html", {"result": int(prediction[0])})
     else:
         return render(request, "result_en.html", {"result": int(prediction[0])})
