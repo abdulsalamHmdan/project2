@@ -6,7 +6,9 @@ input:focus {
     outline: none;
     /* border: none; */
 }
-
+.lang{
+    cursor: pointer;
+}
 
 
 .header {

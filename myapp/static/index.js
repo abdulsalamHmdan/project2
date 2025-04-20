@@ -1,5 +1,10 @@
 // هذا الكود حق الاسئلة اللي جوابه 0و1
 
+document.querySelector(".lang").addEventListener('click',()=>{
+    window.open('lang', '_self');
+
+})
+
 document.querySelectorAll(".box").forEach(x => {
     x.setAttribute("value", "0");
     x.addEventListener('click', () => {
