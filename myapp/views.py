@@ -3,7 +3,8 @@ from django.http import JsonResponse
 import joblib
 import pandas as pd
 import json
-en = 0
+
+# en = 0
 # from django.views.generic import TemplateView
 # from mysite.settings import BASE_DIR
 
@@ -150,10 +151,14 @@ def home(request):
             ],
         },
     ]
-    if en:
+
+    lan = request.COOKIES.get("lan", 0)
+    if lan == "en":
+        return render(request, "index_en.html", {"questions": my_list})
+    elif lan == "ar":
         return render(request, "index.html", {"questions": my_list})
     else:
-        return render(request, "index_en.html", {"questions": my_list})
+        return render(request, "lang.html", {"questions": my_list})
 
 
 def setp(request):
@@ -164,6 +169,17 @@ def setp(request):
         response = HttpResponse("success")
         response.set_cookie("features_name", features_name, max_age=25)
         response.set_cookie("values", values, max_age=25)
+        return response
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
+def setlan(request):
+    if request.method == "POST":
+        # قراءة البيانات المرسلة عبر POST
+        values = request.POST.get("values", None)
+        response = HttpResponse("lan")
+        response.set_cookie("lan", values)
         return response
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
@@ -181,10 +197,15 @@ def result(request):
     y2 = json.loads(x2)
     input_data = pd.DataFrame([y2["array"]], columns=y1["array"])
     prediction = model.predict(input_data)
-    if en:
-        return render(request, "result.html", {"result": int(prediction[0])})
-    else:
+    lan = request.COOKIES.get("lan", 0)
+    if lan == "en":
         return render(request, "result_en.html", {"result": int(prediction[0])})
+    else:
+        return render(request, "result.html", {"result": int(prediction[0])})
+
+
+def lang(request):
+    return render(request, "lang.html")
 
 
 # class result(TemplateView):
