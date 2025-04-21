@@ -335,7 +335,6 @@
                 {% elif qu.type == 't1'%}
                 <div class="q flex1">
                     <div id={{qu.id}} class="yn box">
-                        <!-- <img class="q-mark" src="imgs/download.png"> -->
                         <svg class="q-mark" viewBox="64 64 896 896" data-icon="info-circle" width="1em" height="1em"
                             fill="#848484" aria-hidden="true" focusable="false" class="">
                             <circle r="400" cx="500" cy="500" fill="#fff" />
@@ -346,6 +345,7 @@
                                 d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z">
                             </path>
                         </svg>
+                        <span class="hint">{{qu.hint_en}}</span>
                         <p>{{qu.en}}</p>
                     </div>
                 </div>

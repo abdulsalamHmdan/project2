@@ -6,7 +6,8 @@ input:focus {
     outline: none;
     /* border: none; */
 }
-.lang{
+
+.lang {
     cursor: pointer;
 }
 
@@ -70,10 +71,12 @@ input:focus {
 .flex2 {
     flex: 0 0 50%;
 }
+
 .flex3 {
     flex: 0 0 100%;
 }
-#GenHlth{
+
+#GenHlth {
     flex: 0 0 100%;
 }
 
@@ -112,6 +115,27 @@ input:focus {
     cursor: pointer;
     border-radius: 50%;
     box-shadow: 0px 0px 0px 3px #fff;
+}
+
+.q-mark:hover+.hint {
+    visibility: visible;
+}
+
+.hint {
+    visibility: hidden;
+    min-width: 120px;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    margin-top: -20px;
+    margin-right: 10px;
+
+
+
 }
 
 .flex2 input {
@@ -162,7 +186,7 @@ select.error {
     border: 1px solid transparent;
     box-shadow: 0 2px 0 rgba(0, 0, 0, .015);
     cursor: pointer;
-    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    transition: all .3s cubic-bezier(.645, .045, .355, 1);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
