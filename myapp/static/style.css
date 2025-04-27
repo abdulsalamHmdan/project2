@@ -133,9 +133,6 @@ input:focus {
     z-index: 1;
     margin-top: -20px;
     margin-right: 10px;
-
-
-
 }
 
 .flex2 input {
@@ -167,7 +164,6 @@ select.error {
     border-color: #035aef;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, .12);
     border-radius: 5px;
-
     direction: ltr;
     box-shadow: 0 4px 8px rgba(#035aef, 0.15);
     height: 50px;
@@ -175,7 +171,6 @@ select.error {
     font-size: var(--font-size);
     margin-left: auto;
     width: 200px;
-
     line-height: 1.499;
     position: relative;
     display: inline-block;
@@ -206,14 +201,8 @@ select.error {
         flex-direction: column;
         align-items: center;
     }
-
     .header {
         width: 100vw;
-        /* display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        margin-bottom: 50px; */
     }
 
 }

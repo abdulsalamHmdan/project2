@@ -6,21 +6,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>result</title>
+    <link rel="stylesheet" href="{% static 'result.css' %}">
+    <!-- <script  src="{% static 'jquery-3.6.0.min.js' %}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script defer src="{% static 'result.js' %}"></script>
+
 </head>
 
 <body>
-    {% if result == 0%}
-    <h1>انت غير مصاب</h1>
-    <h1>{{result}}</h1>
-    {% else %}
-    <h1>انت مصاب</h1>
-    <h1>{{result}}</h1>
-    {% endif %}
-    <a href="/">
-    <div class="back">
-        العودة
+    <!-- <h1>احتمالية اصابتك بمرض السكر هي </h1> -->
+    <div class="container">
+        <div class="canvas">
+            <canvas data-perc="{{result}}" id="myChart"></canvas>
+            <h1 class="title">{{result}}%</h1>
+
+         </div>
+        <a href="/">
+            <div class="back">
+                العودة
+            </div>
+        </a>
+
     </div>
-</a>
 </body>
+<script>
+    let prediction = '{{result}}';
+    console.log(prediction)
+</script>
 
 </html>

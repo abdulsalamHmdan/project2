@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html {
+    background-color: rgb(243 244 247);
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 99vh;
+}
+
+.container {
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #c2c9d6;
+    border-radius: 1rem;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 15px;
+}
+
+canvas {
+    width: 850px !important;
+    height: 600px !important;
+}
+
+.canvas {
+    position: relative;
+
+}
+
+.canvas .title {
+    position: absolute;
+    bottom: calc(50% - 50px);
+    left: calc(50% - 50px);
+    z-index: 2;
+}
