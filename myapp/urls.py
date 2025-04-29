@@ -8,5 +8,6 @@ urlpatterns = [
     path("setp",views.setp,name="setp"),
     path("setlan",views.setlan,name="setlan"),
     path("lang",views.lang,name="lang"),
+    path("app",views.app,name="app"),
     # path("result",views.result.as_view())
 ]

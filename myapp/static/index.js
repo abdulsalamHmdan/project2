@@ -107,7 +107,8 @@ document.querySelector(".send").addEventListener('click', (e) => {
         type: "POST",
         data: data,
         success: function (response) { // ينفذ الفنكشن هذي في حال تم ارسال البيانات بنجاح
-            window.open('result', '_self');
+            // window.open('result', '_self');
+            popup();
         },
         error: function (err) {// ينفذ الفنكشن هذي في حال واجه مشكلة في ارسال البيانات
             console.log(err)

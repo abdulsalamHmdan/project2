@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import joblib
 import pandas as pd
 import json
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -191,14 +192,28 @@ def home(request):
         return render(request, "lang.html", {"questions": my_list})
 
 
+@csrf_exempt
+def app(request):
+    # if request.method == "POST":
+    return JsonResponse("good response", status=200, safe=False)
+    # else:
+    #     return JsonResponse({"error": "Invalid request method"}, status=405)
+
+
 def setp(request):
     if request.method == "POST":
         # قراءة البيانات المرسلة عبر POST
         features_name = request.POST.get("features_name", None)
         values = request.POST.get("values", None)
         response = HttpResponse("success")
-        response.set_cookie("features_name", features_name,)# max_age=25)
-        response.set_cookie("values", values, )#max_age=25)
+        response.set_cookie(
+            "features_name",
+            features_name,
+        )  # max_age=25)
+        response.set_cookie(
+            "values",
+            values,
+        )  # max_age=25)
         return response
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
@@ -233,7 +248,9 @@ def result(request):
     if lan == "en":
         return render(request, "result_en.html", {"result": prediction[0][0]})
     else:
-        return render(request, "result.html", {"result": round(prediction[0][1] * 100 ,2)})
+        return render(
+            request, "result.html", {"result": round(prediction[0][1] * 100, 2)}
+        )
 
 
 def lang(request):
