@@ -2,6 +2,13 @@
     box-sizing: border-box;
 }
 
+html {
+    background-color: rgb(243 244 247);
+    background-image: url('imgs/medical-pattern-monitor.jpg');
+    background-size: cover;  
+    background-position: center;
+    background-repeat: no-repeat;
+}
 input:focus {
     outline: none;
     /* border: none; */
