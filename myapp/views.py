@@ -4,6 +4,8 @@ import joblib
 import pandas as pd
 import json
 from django.views.decorators.csrf import csrf_exempt
+import time
+
 
 
 # Create your views here.
@@ -192,12 +194,26 @@ def home(request):
         return render(request, "lang.html", {"questions": my_list})
 
 
+# @csrf_exempt
+# def app(request):
+#     if request.method == "POST":
+#         data = request.POST.get("data", None)
+#         print(data)
+#         return JsonResponse("good response", status=200, safe=False)
+#     else:
+#         return JsonResponse({"error": "Invalid request method"}, status=405)
+
 @csrf_exempt
 def app(request):
-    # if request.method == "POST":
-    return JsonResponse("good response", status=200, safe=False)
-    # else:
-    #     return JsonResponse({"error": "Invalid request method"}, status=405)
+    if request.method == "POST":
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        data = body_data.get("a", None)
+        print(data)
+        time.sleep(2.5)
+        return JsonResponse("good response", status=200, safe=False)
+    else:
+        return JsonResponse({"error": "Invalid request method"}, status=405)
 
 
 def setp(request):
