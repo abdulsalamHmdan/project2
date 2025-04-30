@@ -7,7 +7,6 @@ from django.views.decorators.csrf import csrf_exempt
 import time
 
 
-
 # Create your views here.
 def home(request):
     my_list = [
@@ -203,15 +202,39 @@ def home(request):
 #     else:
 #         return JsonResponse({"error": "Invalid request method"}, status=405)
 
+
 @csrf_exempt
 def app(request):
     if request.method == "POST":
-        body_unicode = request.body.decode('utf-8')
+        body_unicode = request.body.decode("utf-8")
         body_data = json.loads(body_unicode)
-        data = body_data.get("a", None)
-        print(data)
+        data = body_data.get("arr", None)
+        # print(len([data]))
         time.sleep(2.5)
-        return JsonResponse("good response", status=200, safe=False)
+        model = joblib.load("myapp/model_old.pkl")
+        features_name = [
+            "Age",
+            "Sex",
+            "HighChol",
+            "CholCheck",
+            "BMI",
+            "Smoker",
+            "HeartDiseaseorAttack",
+            "PhysActivity",
+            "Fruits",
+            "Veggies",
+            "GenHlth",
+            "MentHlth",
+            "PhysHlth",
+            "DiffWalk",
+            "Stroke",
+            "HighBP",
+        ]
+        input_data = pd.DataFrame([data], columns=features_name)
+        # print(input_data)
+        prediction = model.predict_proba(input_data)
+        # print(prediction[0])
+        return JsonResponse({"data": prediction[0][0]}, status=200, safe=False)
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
 
