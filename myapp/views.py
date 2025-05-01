@@ -210,7 +210,7 @@ def app(request):
         body_data = json.loads(body_unicode)
         data = body_data.get("arr", None)
         # print(len([data]))
-        time.sleep(2.5)
+        # time.sleep(2.5)
         model = joblib.load("myapp/model_old.pkl")
         features_name = [
             "Age",
