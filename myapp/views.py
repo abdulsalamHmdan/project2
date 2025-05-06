@@ -232,7 +232,9 @@ def app(request):
         # print(input_data)
         prediction = model.predict_proba(input_data)
         # print(prediction[0])
-        return JsonResponse({"data": prediction[0][0]}, status=200, safe=False)
+        return JsonResponse(
+            {"data": round(prediction[0][1] * 100, 2)}, status=200, safe=False
+        )
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
 
@@ -292,7 +294,9 @@ def result(request):
     print(prediction[0])
     lan = request.COOKIES.get("lan", 0)
     if lan == "en":
-        return render(request, "result_en.html", {"result": round(prediction[0][1] * 100, 2)})
+        return render(
+            request, "result_en.html", {"result": round(prediction[0][1] * 100, 2)}
+        )
     else:
         return render(
             request, "result.html", {"result": round(prediction[0][1] * 100, 2)}
