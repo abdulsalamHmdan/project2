@@ -1,6 +1,6 @@
 // هذا الكود حق الاسئلة اللي جوابه 0و1
 
-document.querySelector(".lang").addEventListener('click',()=>{
+document.querySelector(".lang").addEventListener('click', () => {
     window.open('lang', '_self');
 
 })
@@ -43,7 +43,7 @@ document.querySelector(".send").addEventListener('click', (e) => {
         }
     })
     if (flag) {
-        alert("aaa")
+        popupError()
         return;
     }
 
@@ -108,7 +108,8 @@ document.querySelector(".send").addEventListener('click', (e) => {
         data: data,
         success: function (response) { // ينفذ الفنكشن هذي في حال تم ارسال البيانات بنجاح
             // window.open('result', '_self');
-            popup();
+            console.log()
+            popup(response);
         },
         error: function (err) {// ينفذ الفنكشن هذي في حال واجه مشكلة في ارسال البيانات
             console.log(err)

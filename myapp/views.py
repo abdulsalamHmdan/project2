@@ -209,8 +209,6 @@ def app(request):
         body_unicode = request.body.decode("utf-8")
         body_data = json.loads(body_unicode)
         data = body_data.get("arr", None)
-        # print(len([data]))
-        # time.sleep(2.5)
         model = joblib.load("myapp/model_old.pkl")
         features_name = [
             "Age",
@@ -242,9 +240,18 @@ def app(request):
 def setp(request):
     if request.method == "POST":
         # قراءة البيانات المرسلة عبر POST
+        print("jhkguyfytd")
         features_name = request.POST.get("features_name", None)
         values = request.POST.get("values", None)
-        response = HttpResponse("success")
+        model = joblib.load("myapp/model_old.pkl")
+        x1 = features_name
+        x2 = values
+        y1 = json.loads(x1)
+        y2 = json.loads(x2)
+        input_data = pd.DataFrame([y2["array"]], columns=y1["array"])
+        prediction = model.predict_proba(input_data)
+
+        response = HttpResponse(round(prediction[0][1] * 100, 2))
         response.set_cookie(
             "features_name",
             features_name,
@@ -285,7 +292,7 @@ def result(request):
     print(prediction[0])
     lan = request.COOKIES.get("lan", 0)
     if lan == "en":
-        return render(request, "result_en.html", {"result": prediction[0][0]})
+        return render(request, "result_en.html", {"result": round(prediction[0][1] * 100, 2)})
     else:
         return render(
             request, "result.html", {"result": round(prediction[0][1] * 100, 2)}

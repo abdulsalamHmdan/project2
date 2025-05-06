@@ -6,7 +6,7 @@
 html {
     background-color: rgb(243 244 247);
     background-image: url('imgs/medical-pattern-monitor.jpg');
-    background-size: cover;  
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -64,4 +64,55 @@ body {
 .box img {
     width: 125px;
     height: 125px;
+}
+
+@media only screen and (max-width: 650px) {
+    /* body {
+      background-color: lightblue;
+    } */
+
+    .main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .header {
+        width: 100vw;
+    }
+
+    .container {
+        padding: rem;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+
+    }
+
+    .boxes {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .box {
+        border: #4b5c8d dotted 1px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: 1s all;
+    
+    }
+    /* html {
+        background-color: rgb(243 244 247);
+        background-image: url('imgs/medical-pattern-phone.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    } */
+
 }
