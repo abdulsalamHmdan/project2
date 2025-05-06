@@ -18,20 +18,35 @@ input:focus {
     cursor: pointer;
 }
 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .fullContiner {
+    margin-top: 50px;
     background-color: rgba(255, 255, 255, 0.99);
     border-radius: 3rem;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
+    width: min(950px, 90vw);
 
 }
 
 .header {
-    height: 200px;
+    height: 225px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 50px;
+    padding-top: 10px;
+    max-width: 100%;
+}
+
+.header * {
+    max-width: 200px;
+
 }
 
 .container {
@@ -165,6 +180,13 @@ input:focus {
     width: 100%;
 }
 
+.langBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 input.error,
 select.error {
     border-color: red;
@@ -206,17 +228,26 @@ select.error {
 
 
 @media only screen and (max-width: 650px) {
+
     /* body {
       background-color: lightblue;
     } */
+    img.qassimLogo {
+        display: none;
+    }
 
     .main {
         flex-direction: column;
         align-items: center;
     }
 
-    .header {
+    /* .header {
         width: 100vw;
+    } */
+
+    .header * {
+        max-width: 50%;
+
     }
 
 }
