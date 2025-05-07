@@ -10,6 +10,7 @@
     <!-- <script defer src="index.js"></script> -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'button.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
     <script defer src="{% static 'index.js' %}"></script>
     <style>
@@ -68,7 +69,7 @@
                     {% endif %}
                     {% endfor %}
                     <div class="flex3 bt">
-                        <button class="send">ارسال البيانات</button>
+                        <button class="send">send data</button>
                     </div>
                 </div>
                 <div class="labels">
@@ -90,7 +91,7 @@
                         <h2 style="font-weight: bold;">need a help?</h2>
                         <p> if you need a help mail us on this address :- </p>
                         <p style="font-weight: bold;"><a href="mailto:hopehorizon.world@gmail.com">
-                            info@unaizahdiabetes.org.sa </a></p>
+                                info@unaizahdiabetes.org.sa </a></p>
                     </div>
                     <div class="label langBox">
                         <p> to change the language press here </p>
@@ -103,5 +104,26 @@
     </div>
     <script>
         const csrf = '{{ csrf_token }}'
+        function popup(data) {
+            let text = (data > 30) ? "You may be at increased risk of developing diabetes." : "Your risk of developing diabetes is low"
+            Swal.fire({
+                title: `<strong>${text}</strong>`,
+                icon: (data > 30) ? "warning" : "success",
+                html: `Based on the information you provided, your estimated risk of developing diabetes is ${data || "error"}%
+                <br>`,
+                showCloseButton: true,
+                footer: '<strong>Please note that this is not a medical diagnosis. We recommend consulting your doctor for further evaluation.</strong>',
+                confirmButtonText: "اغلاق"
+            });
+        }
+        function popupError() {
+            Swal.fire({
+                title: `<strong>Please verify the entered information</strong>`,
+                icon: "warning",
+                showCloseButton: true,
+                confirmButtonText: "اغلاق"
+            });
+        }
+        popup(19)
     </script>
 </body>

@@ -112,7 +112,7 @@
             let text = (data > 70) ? "عالية جدا" : (data > 30) ? "مرتفعة" : "منخفضة"
             Swal.fire({
                 title: `<strong>احتمالية اصابتك بمرض السكري ${text}</strong>`,
-                icon: "warning",
+                icon: (data > 30) ? "warning" : "success",
                 html: `بناءً على المعلومات المدخلة، فإن الاحتمالية التقديرية لإصابتك بمرض السكري هي ${data || "error"}%
                 <br>`,
                 showCloseButton: true,
@@ -128,6 +128,6 @@
                 confirmButtonText: "اغلاق"
             });
         }
-        popup(71);
+        popup(18);
     </script>
 </body>
