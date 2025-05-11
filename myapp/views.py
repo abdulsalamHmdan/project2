@@ -13,8 +13,8 @@ def home(request):
         {
             "type": "t2",
             "id": "Weight",
-            "en": "Weight",
-            "title": "الوزن",
+            "en": "Weight (kg)",
+            "title": "الوزن (كجم)",
             "placeholder": " ",
             "max": 200,
             "min": 30,
@@ -24,8 +24,8 @@ def home(request):
         {
             "type": "t2",
             "id": "Height",
-            "en": "Height",
-            "title": "الطول",
+            "en": "Height (cm)",
+            "title": "الطول (سم)",
             "placeholder": " ",
             "max": 250,
             "min": 120,
