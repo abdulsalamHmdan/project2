@@ -58,12 +58,17 @@ body {
 
 }
 
+.input-label{
+    padding : 0px 10px;
+}
 .main {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    gap: 30px
+    gap: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .labels {

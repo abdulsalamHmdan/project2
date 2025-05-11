@@ -118,3 +118,11 @@ document.querySelector(".send").addEventListener('click', (e) => {
     });
 
 })
+
+$( document ).ready(function() {
+    if($(window).width() < 766){
+        $('.explain-icon').hide();
+        $('.q-mark').hide();
+        
+      }
+});
