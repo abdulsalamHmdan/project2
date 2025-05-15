@@ -5,20 +5,20 @@ document.querySelector(".lang").addEventListener('click', () => {
 
 })
 
-document.querySelectorAll(".box").forEach(x => {
-    x.setAttribute("value", "0");
-    x.addEventListener('click', () => {
-        if (x.classList.contains("active")) {
-            x.classList.remove("active")
-            x.setAttribute("value", "-1");
+// document.querySelectorAll(".box").forEach(x => {
+//     x.setAttribute("value", "0");
+//     x.addEventListener('click', () => {
+//         if (x.classList.contains("active")) {
+//             x.classList.remove("active")
+//             x.setAttribute("value", "-1");
 
-        }else {
-            x.classList.add("active")
-            x.setAttribute("value", "1");
+//         }else {
+//             x.classList.add("active")
+//             x.setAttribute("value", "1");
 
-        }
-    })
-})
+//         }
+//     })
+// })
 
 // اراي لتحديد العمر
 let ageIndex = [[18, 24, "1"], [25, 29, "2"], [30, 34, "3"], [35, 39, "4"], [40, 44, "5"], [45, 49, "6"], [50, 54, "7"], [55, 59, "8"], [60, 64, "9"], [65, 69, "10"], [70, 74, "11"], [75, 79, "12"], [80, 120, "13"]];
@@ -46,7 +46,7 @@ document.querySelector(".send").addEventListener('click', (e) => {
     let yn = [...document.querySelectorAll(".box")].map(yn => {
         return {
             id: yn.getAttribute("id"),
-            value: yn.getAttribute("value"),
+            value: yn.checked ? 1 : 0,
             col: col.findIndex(x => x == yn.getAttribute("id"))
         }
     })
@@ -86,6 +86,7 @@ document.querySelector(".send").addEventListener('click', (e) => {
     // يسوي ترتيب للمعلومات حسب الاراي الموجودة بداية الكود
     data = data.sort(function (a, b) { return a['col'] - b['col'] });
 
+    // console.log(data)
     // ينسق البيانات عشان نرسلهن للسيرفر (صفحة الفيو views.py)
     data = {
         features_name: JSON.stringify({ array: data.map(x => x.id) }),
@@ -96,7 +97,6 @@ document.querySelector(".send").addEventListener('click', (e) => {
 
 
     // يرسل البيانات الى السيرفر
-
     $.ajax({
         url: "/setp",
         type: "POST",

@@ -181,6 +181,8 @@ my_list = [
     },
 ]
 
+model = joblib.load("myapp/model_old.pkl")
+
 
 # Create your views here.
 def home(request):
@@ -209,7 +211,6 @@ def app(request):
         body_unicode = request.body.decode("utf-8")
         body_data = json.loads(body_unicode)
         data = body_data.get("arr", None)
-        model = joblib.load("myapp/model_old.pkl")
         features_name = [
             "Age",
             "Sex",

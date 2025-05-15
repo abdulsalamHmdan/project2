@@ -49,8 +49,9 @@
                     </div>
                     {% elif qu.type == 't1'%}
                     <div class="tile">
-                        <input id={{qu.id}} type="checkbox" name="{{qu.id}}" id="{{qu.id}}">
+                        <input class="box" type="checkbox" name="{{qu.id}}" id="{{qu.id}}">
                         <label for="{{qu.id}}">
+                            <img width="80" height="80" src="{% static 'imgs/emoji/' %}{{ qu.id }}.PNG" alt="">
                             <h6>{{qu.title}}</h6>
                         </label>
                     </div>
@@ -125,3 +126,5 @@
         }
     </script>
 </body>
+
+</html>
