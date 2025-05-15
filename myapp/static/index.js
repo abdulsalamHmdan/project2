@@ -10,14 +10,9 @@ document.querySelectorAll(".box").forEach(x => {
     x.addEventListener('click', () => {
         if (x.classList.contains("active")) {
             x.classList.remove("active")
-            x.classList.add("notsure")
             x.setAttribute("value", "-1");
 
-        } else if (x.classList.contains("notsure")) {
-            x.classList.remove("notsure")
-            x.setAttribute("value", "0");
-
-        } else {
+        }else {
             x.classList.add("active")
             x.setAttribute("value", "1");
 
@@ -107,8 +102,6 @@ document.querySelector(".send").addEventListener('click', (e) => {
         type: "POST",
         data: data,
         success: function (response) { // ينفذ الفنكشن هذي في حال تم ارسال البيانات بنجاح
-            // window.open('result', '_self');
-            console.log()
             popup(response);
         },
         error: function (err) {// ينفذ الفنكشن هذي في حال واجه مشكلة في ارسال البيانات
@@ -118,11 +111,3 @@ document.querySelector(".send").addEventListener('click', (e) => {
     });
 
 })
-
-$( document ).ready(function() {
-    if($(window).width() < 766){
-        $('.explain-icon').hide();
-        $('.q-mark').hide();
-        
-      }
-});
