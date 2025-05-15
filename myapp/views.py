@@ -49,6 +49,10 @@ my_list = [
             {"value": 1, "title": "ذكر"},
             {"value": 2, "title": "أنثى"},
         ],
+        "enList": [
+            {"value": 1, "title": "Male"},
+            {"value": 2, "title": "Female"},
+        ],
         "hint": "اختر إذا كنت ذكر أو أنثى",
         "hint_en": "Select your gender: male or female",
     },

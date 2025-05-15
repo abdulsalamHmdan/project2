@@ -296,8 +296,24 @@ label h6 {
 
     }
 
-    .q-mark {
-        display: none;
+    label {
+        justify-content: flex-start;
+        gap: 10px;
+        /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    min-width: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 0 20px; */
+    }
+
+    label img {
+        width: 60px;
+        height: 60px;
     }
 
 }
