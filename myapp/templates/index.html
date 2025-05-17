@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home page</title>
+    <title>DiabetAIs - تعرف على نسبة اصابتك بمرض السكري</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- <script defer src="index.js"></script> -->
     <link rel="stylesheet" href="{% static 'style.css' %}">
@@ -39,8 +39,7 @@
             <div class="info"></div>
             <div class="main">
                 <div class="form">
-                    <p class="flex3 input-label">يرجى التأكد من المعلومات المدخلة</p>
-
+                    <p class="flex3 input-label">يرجى الإجابة على الاسئلة التالية</p>
                     {% for qu in questions %}
                     {% if qu.type == 't2'%}
                     <div id={{qu.id}} class="q flex2 val">
@@ -48,6 +47,9 @@
                         <input class="valid" max={{qu.max}} min={{qu.min}} type="number">
                     </div>
                     {% elif qu.type == 't1'%}
+                    {% if qu.id == "HighChol" %}
+                    <p class="flex3 scndinputlabel ">اضغط على السؤال للإجابة بنعم</p>
+                    {% endif %}
                     <div class="tile">
                         <input class="box" type="checkbox" name="{{qu.id}}" id="{{qu.id}}">
                         <label for="{{qu.id}}">
@@ -68,11 +70,11 @@
                     {% endif %}
                     {% endfor %}
                     <div class="flex3 bt">
-                        <button class="send">ارسال البيانات</button>
+                        <button class="send">أظهر النتيجة</button>
                     </div>
                 </div>
                 <div class="labels">
-                    <div class="label explain-icon">
+                    <!-- <div class="label explain-icon">
                         <h2 style="font-weight: bold;">هل تواجه مشكلة ؟</h2>
                         <p> قم بوضع الفأرة على العلامة<i aria-label="icon: info-circle"
                                 class="anticon anticon-info-circle" style="font-size: 18px;"><svg
@@ -85,11 +87,11 @@
                                         d="M464 336a48 48 0 1 0 96 0 48 48 0 1 0-96 0zm72 112h-48c-4.4 0-8 3.6-8 8v272c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V456c0-4.4-3.6-8-8-8z">
                                     </path>
                                 </svg></i> حتى تحصل على التلميح </p>
-                    </div>
+                    </div> -->
                     <div class="label">
                         <h2 style="font-weight: bold;">تحتاج مساعدة؟</h2>
                         <p> إذا كنت بحاجة الى المساعدة تواصل معنا على البريد التالي </p>
-                        <p style="font-weight: bold;"><a href="mailto:hopehorizon.world@gmail.com">
+                        <p style="font-weight: bold;"><a href="mailto:info@unaizahdiabetes.org.sa">
                                 info@unaizahdiabetes.org.sa </a></p>
                     </div>
                     <div class="label langBox">
@@ -102,10 +104,11 @@
         </div>
     </div>
 
+
     <script>
         const csrf = '{{ csrf_token }}'
         function popup(data) {
-            let text = (data > 70) ? "عالية جدا" : (data > 30) ? "مرتفعة" : "منخفضة"
+            let text = (data > 70) ? "عالية" : (data > 30) ? "متوسطة" : "منخفضة"
             Swal.fire({
                 title: `<strong>احتمالية اصابتك بمرض السكري ${text}</strong>`,
                 icon: (data > 30) ? "warning" : "success",

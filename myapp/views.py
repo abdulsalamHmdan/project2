@@ -310,7 +310,6 @@ def result(request):
 def lang(request):
     return render(request, "lang.html")
 
-
 # class result(TemplateView):
 #     def get(self, request):
 #         model = joblib.load("myapp/model_1.pkl")
@@ -325,3 +324,4 @@ def lang(request):
 #         input_data = pd.DataFrame([y2["array"]], columns=y1["array"])
 #         prediction = model.predict(input_data)
 #         return render(request, "result.html", {"result": int(prediction[0])})
+

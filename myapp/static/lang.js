@@ -5,7 +5,7 @@ document.querySelectorAll(".box").forEach(box => {
             csrfmiddlewaretoken: csrf,
 
         }
-        console.log(data)
+        // console.log(data)
         // يرسل البيانات الى السيرفر
 
         $.ajax({
@@ -16,7 +16,7 @@ document.querySelectorAll(".box").forEach(box => {
                 window.open('/', '_self');
             },
             error: function (err) {// ينفذ الفنكشن هذي في حال واجه مشكلة في ارسال البيانات
-                console.log(err)
+                // console.log(err)
                 alert("يوجد مشكلة يرجى المحاولة لاحقا")
             }
         });

@@ -3,12 +3,62 @@
 }
 
 html {
+    font-family: "Tajawal";
+    font-weight: 600 ;
     background-color: rgb(243 244 247);
     background-image: url('imgs/medical-pattern-monitor.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
+
+@font-face {
+    font-family: 'bahij';
+    src: url("fonts/Bahij.ttf");
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('fonts/Tajawal-Thin.ttf');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('fonts/Tajawal-ExtraLight.ttf');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('fonts/Tajawal-Light.ttf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('fonts/Tajawal-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('fonts/Tajawal-Medium.ttf');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('fonts/Tajawal-Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Tajawal';
+    src: url('fonts/Tajawal-Black.ttf');
+    font-weight: 900;
+    font-style: normal;
+}
+
 
 input:focus {
     outline: none;
@@ -60,6 +110,16 @@ body {
 
 .input-label {
     padding: 0px 10px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.scndinputlabel {
+    padding: 30px 10px 0px 10px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    text-align: center;
+
 }
 
 .main {
@@ -162,10 +222,10 @@ select.error {
     box-shadow: 0 4px 8px rgba(#035aef, 0.15);
     height: 50px;
     font-family: var(--font-family);
-    font-size: var(--font-size);
+    font-size: 22px;
     margin-left: auto;
     width: 200px;
-    line-height: 1.499;
+    line-height: 1.7;
     position: relative;
     display: inline-block;
     font-weight: 400;
@@ -181,7 +241,6 @@ select.error {
     -ms-user-select: none;
     user-select: none;
     touch-action: manipulation;
-    height: 32px;
     padding: 0 15px;
 }
 
@@ -264,10 +323,10 @@ input[type="checkbox"]:checked+label .fas {
 } */
 
 label h6 {
-    font-family: "Poppins", sans-serif;
+    font-family: "Tajawal", sans-serif;
     font-size: 15px;
-    font-weight: 400;
-    color: #7b7b93;
+    font-weight: 500;
+    color: #000000;
     text-align: center;
     margin: 0;
 }
