@@ -196,7 +196,7 @@ select.error {
 }
 
 input[type="checkbox"] {
-    -webkit-appearance: none;
+    /* -webkit-appearance: none; */
     position: relative;
     height: 100%;
     width: 100%;
