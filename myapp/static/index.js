@@ -105,7 +105,7 @@ document.querySelector(".send").addEventListener('click', (e) => {
             popup(response);
         },
         error: function (err) {// ينفذ الفنكشن هذي في حال واجه مشكلة في ارسال البيانات
-            console.log(err)
+            // console.log(err)
             alert("يوجد مشكلة يرجى المحاولة لاحقا")
         }
     });
