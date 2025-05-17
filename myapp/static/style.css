@@ -18,43 +18,43 @@ html {
 }
 @font-face {
     font-family: 'Tajawal';
-    src: url('fonts/Tajawal-Thin.ttf');
+    src: url('fonts/tajwal/Tajawal-Thin.ttf');
     font-weight: 100;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tajawal';
-    src: url('fonts/Tajawal-ExtraLight.ttf');
+    src: url('fonts/tajwal/Tajawal-ExtraLight.ttf');
     font-weight: 200;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tajawal';
-    src: url('fonts/Tajawal-Light.ttf');
+    src: url('fonts/tajwal/Tajawal-Light.ttf');
     font-weight: 300;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tajawal';
-    src: url('fonts/Tajawal-Regular.ttf');
+    src: url('fonts/tajwal/Tajawal-Regular.ttf');
     font-weight: 400;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tajawal';
-    src: url('fonts/Tajawal-Medium.ttf');
+    src: url('fonts/tajwal/Tajawal-Medium.ttf');
     font-weight: 500;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tajawal';
-    src: url('fonts/Tajawal-Bold.ttf');
+    src: url('fonts/tajwal/Tajawal-Bold.ttf');
     font-weight: 700;
     font-style: normal;
 }
 @font-face {
     font-family: 'Tajawal';
-    src: url('fonts/Tajawal-Black.ttf');
+    src: url('fonts/tajwal/Tajawal-Black.ttf');
     font-weight: 900;
     font-style: normal;
 }
@@ -279,10 +279,6 @@ input[type="checkbox"]:after {
     color: #e2e6f3;
 }
 
-/* input[type="checkbox"]:hover {
-    transform: scale(1.08);
-} */
-
 input[type="checkbox"]:checked {
     border: 3px solid #478bfb;
 }
@@ -313,9 +309,9 @@ label .fas {
     color: #2c2c51;
 }
 
-input[type="checkbox"]:checked+label .fas {
+/* input[type="checkbox"]:checked+label .fas {
     animation: grow 0.5s;
-}
+} */
 
 /* @keyframes grow {
     50% {
@@ -353,22 +349,11 @@ label h6 {
 
     .header * {
         max-width: 50%;
-
     }
 
     label {
         justify-content: flex-start;
         gap: 10px;
-        /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 80%;
-    min-width: 100%;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    cursor: pointer;
-    padding: 0 20px; */
     }
 
     label img {

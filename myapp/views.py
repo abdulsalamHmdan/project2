@@ -249,14 +249,12 @@ def setp(request):
         # قراءة البيانات المرسلة عبر POST
         features_name = request.POST.get("features_name", None)
         values = request.POST.get("values", None)
-        model = joblib.load("myapp/model_old.pkl")
         x1 = features_name
         x2 = values
         y1 = json.loads(x1)
         y2 = json.loads(x2)
         input_data = pd.DataFrame([y2["array"]], columns=y1["array"])
         prediction = model.predict_proba(input_data)
-
         response = HttpResponse(round(prediction[0][1] * 100, 2))
         response.set_cookie(
             "features_name",
@@ -310,6 +308,7 @@ def result(request):
 def lang(request):
     return render(request, "lang.html")
 
+
 # class result(TemplateView):
 #     def get(self, request):
 #         model = joblib.load("myapp/model_1.pkl")
@@ -324,4 +323,3 @@ def lang(request):
 #         input_data = pd.DataFrame([y2["array"]], columns=y1["array"])
 #         prediction = model.predict(input_data)
 #         return render(request, "result.html", {"result": int(prediction[0])})
-
