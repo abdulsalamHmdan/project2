@@ -96,18 +96,23 @@ document.querySelector(".send").addEventListener('click', (e) => {
     }
 
 
-    // يرسل البيانات الى السيرفر
-    $.ajax({
-        url: "/setp",
-        type: "POST",
-        data: data,
-        success: function (response) { // ينفذ الفنكشن هذي في حال تم ارسال البيانات بنجاح
+
+
+    let formData = new FormData();
+    formData.append('features_name', data.features_name);
+    formData.append('values', data.values);
+    formData.append('csrfmiddlewaretoken', data.csrfmiddlewaretoken);
+
+    fetch("/setp", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.json())
+        .then(response => {
             popup(response);
-        },
-        error: function (err) {// ينفذ الفنكشن هذي في حال واجه مشكلة في ارسال البيانات
-            // console.log(err)
-            alert("يوجد مشكلة يرجى المحاولة لاحقا")
-        }
-    });
+        })
+        .catch(err => {
+            popupError()
+        });
 
 })
